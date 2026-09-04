@@ -1,3 +1,7 @@
 .claude/
 Thumbs.db
 .DS_Store
+
+# APK builds are too large for a normal git push (GitHub's 100MB per-file
+# limit) — distribute via GitHub Releases instead, not the repo itself.
+releases/
