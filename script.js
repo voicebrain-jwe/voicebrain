@@ -11,8 +11,8 @@
      Update ONLY this object when a new APK ships — every .js-download-link,
      .js-latest-version, and .js-releases-link on the page updates automatically. */
   var LATEST_RELEASE = {
-    version: "1.2.0",
-    url: "https://github.com/voicebrain-jwe/voicebrain/releases/download/v1.0/Voicebrain_v1.2.0.apk",
+    version: "1.0",
+    url: "https://github.com/voicebrain-jwe/voicebrain/releases/download/v1.2/Voicebrain_v1.0.apk",
     releasesPage: "https://github.com/voicebrain-jwe/voicebrain/releases"
   };
 
