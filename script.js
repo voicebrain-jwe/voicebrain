@@ -7,6 +7,29 @@
     yearEl.textContent = new Date().getFullYear();
   }
 
+  /* ---------- Scroll-reveal for cards, list items, and content blocks ---------- */
+  if (window.IntersectionObserver) {
+    var revealEls = document.querySelectorAll(".reveal");
+    var revealObserver = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
+    );
+    revealEls.forEach(function (el) {
+      revealObserver.observe(el);
+    });
+  } else {
+    document.querySelectorAll(".reveal").forEach(function (el) {
+      el.classList.add("is-visible");
+    });
+  }
+
   /* ---------- Mobile hamburger menu ---------- */
   var navToggle = document.getElementById("navToggle");
   var navMenu = document.getElementById("primaryMenu");
