@@ -7,6 +7,25 @@
     yearEl.textContent = new Date().getFullYear();
   }
 
+  /* ---------- Latest release (single source of truth for every download link) ----------
+     Update ONLY this object when a new APK ships — every .js-download-link,
+     .js-latest-version, and .js-releases-link on the page updates automatically. */
+  var LATEST_RELEASE = {
+    version: "1.2.0",
+    url: "https://github.com/voicebrain-jwe/voicebrain/releases/download/v1.0/Voicebrain_v1.2.0.apk",
+    releasesPage: "https://github.com/voicebrain-jwe/voicebrain/releases"
+  };
+
+  document.querySelectorAll(".js-download-link").forEach(function (el) {
+    el.setAttribute("href", LATEST_RELEASE.url);
+  });
+  document.querySelectorAll(".js-latest-version").forEach(function (el) {
+    el.textContent = "v" + LATEST_RELEASE.version;
+  });
+  document.querySelectorAll(".js-releases-link").forEach(function (el) {
+    el.setAttribute("href", LATEST_RELEASE.releasesPage);
+  });
+
   /* ---------- Scroll-reveal for cards, list items, and content blocks ---------- */
   if (window.IntersectionObserver) {
     var revealEls = document.querySelectorAll(".reveal");
@@ -136,6 +155,7 @@
     "nav.features": { en: "Features", fil: "Mga Feature" },
     "nav.mission": { en: "Mission", fil: "Misyon" },
     "nav.screenshots": { en: "Screenshots", fil: "Screenshots" },
+    "nav.download": { en: "Download", fil: "Download" },
     "nav.about": { en: "About Us", fil: "Tungkol sa Amin" },
     "nav.contact": { en: "Contact", fil: "Makipag-ugnayan" },
     "nav.privacy": { en: "Privacy Policy", fil: "Patakaran sa Privacy" },
@@ -323,6 +343,16 @@
 
     "privacy.eyebrow": { en: "Legal", fil: "Legal" },
     "privacy.heading": { en: "Privacy Policy", fil: "Patakaran sa Privacy" },
+
+    "download.eyebrow": { en: "Get the App", fil: "Kunin ang App" },
+    "download.heading": { en: "Download Voicebrain", fil: "I-download ang Voicebrain" },
+    "download.lead": {
+      en: "Free to install on Android — works fully online or offline.",
+      fil: "Libreng i-install sa Android — gumagana nang buo online o offline."
+    },
+    "download.meta": { en: "Android APK · ~290 MB", fil: "Android APK · ~290 MB" },
+    "download.cta": { en: "Download Now", fil: "I-download Ngayon" },
+    "download.releases": { en: "View all releases & release notes", fil: "Tingnan ang lahat ng releases at release notes" },
 
     "footer.features": { en: "Features", fil: "Mga Feature" },
     "footer.privacy": { en: "Privacy Policy", fil: "Patakaran sa Privacy" },
