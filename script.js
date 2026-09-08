@@ -156,6 +156,7 @@
     "nav.mission": { en: "Mission", fil: "Misyon" },
     "nav.screenshots": { en: "Screenshots", fil: "Screenshots" },
     "nav.download": { en: "Download", fil: "Download" },
+    "nav.howToInstall": { en: "How to Install", fil: "Paano Mag-install" },
     "nav.about": { en: "About Us", fil: "Tungkol sa Amin" },
     "nav.contact": { en: "Contact", fil: "Makipag-ugnayan" },
     "nav.privacy": { en: "Privacy Policy", fil: "Patakaran sa Privacy" },
