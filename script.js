@@ -354,6 +354,32 @@
     "download.cta": { en: "Download Now", fil: "I-download Ngayon" },
     "download.releases": { en: "View all releases & release notes", fil: "Tingnan ang lahat ng releases at release notes" },
 
+    "download.stepsHeading": { en: "How to Install", fil: "Paano Mag-install" },
+    "download.stepsNote": {
+      en: "Voicebrain isn't on the Google Play Store yet, so Android will walk you through a few extra confirmations the first time. Here's what to expect:",
+      fil: "Wala pa sa Google Play Store ang Voicebrain, kaya may ilang extra na kumpirmasyon ang Android sa unang pag-install. Narito ang aasahan mo:"
+    },
+    "download.step1Title": { en: "Allow installs from your browser", fil: "Payagan ang pag-install mula sa browser" },
+    "download.step1Desc": {
+      en: 'When your browser or Android warns you about installing from an unknown source, tap "Settings," then turn on "Allow from this source" for your browser.',
+      fil: 'Kapag nag-warning ang browser o Android tungkol sa pag-install mula sa hindi kilalang source, i-tap ang "Settings," pagkatapos i-on ang "Allow from this source" para sa browser mo.'
+    },
+    "download.step2Title": { en: "Pause Google Play Protect", fil: "I-pause ang Google Play Protect" },
+    "download.step2Desc": {
+      en: 'Play Protect may try to block the install since the app isn\'t from the Play Store. If prompted, tap "Install anyway," or open Play Store → Profile → Play Protect → Settings and turn off scanning temporarily.',
+      fil: 'Maaaring harangan ng Play Protect ang pag-install dahil wala ito sa Play Store. Kung may lumabas na prompt, i-tap ang "Install anyway," o buksan ang Play Store → Profile → Play Protect → Settings at i-off muna ang scanning.'
+    },
+    "download.step3Title": { en: "Allow restricted settings", fil: "Payagan ang restricted settings" },
+    "download.step3Desc": {
+      en: 'After installing, open Settings → Apps → Voicebrain, tap the ⋮ menu in the top-right corner, and choose "Allow restricted settings." Newer Android versions require this for apps installed outside the Play Store.',
+      fil: 'Pagkatapos mag-install, buksan ang Settings → Apps → Voicebrain, i-tap ang ⋮ menu sa itaas-kanan, at piliin ang "Allow restricted settings." Kailangan ito sa mas bagong Android para sa mga app na na-install sa labas ng Play Store.'
+    },
+    "download.step4Title": { en: "Open Voicebrain and grant permissions", fil: "Buksan ang Voicebrain at payagan ang permissions" },
+    "download.step4Desc": {
+      en: "Launch the app and allow the camera, microphone, and location permissions it asks for — you're ready to use Voicebrain!",
+      fil: "I-launch ang app at payagan ang camera, microphone, at location permissions na hihingiin nito — handa ka nang gamitin ang Voicebrain!"
+    },
+
     "footer.features": { en: "Features", fil: "Mga Feature" },
     "footer.privacy": { en: "Privacy Policy", fil: "Patakaran sa Privacy" },
     "footer.contact": { en: "Contact", fil: "Makipag-ugnayan" },

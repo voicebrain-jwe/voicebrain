@@ -1304,6 +1304,63 @@ section h2 {
   color: var(--color-cyan);
 }
 
+.install-steps {
+  margin-top: 2.5rem;
+}
+
+.install-steps h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.install-steps-note {
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+  max-width: 62ch;
+  margin-bottom: 1.5rem;
+}
+
+.install-steps-list {
+  list-style: none;
+  display: grid;
+  gap: 1.25rem;
+}
+
+.install-steps-list li {
+  display: flex;
+  gap: 1.25rem;
+  align-items: flex-start;
+  background: var(--color-surface);
+  border: 1px solid var(--color-surface-border);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+}
+
+.step-num {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--gradient-primary);
+  color: #0b0b16;
+  font-weight: 800;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.install-steps-list h4 {
+  margin: 0 0 0.4rem;
+  font-size: 1.05rem;
+}
+
+.install-steps-list p {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+}
+
 /* ============ FOOTER ============ */
 
 .site-footer {
