@@ -27,6 +27,7 @@ html[data-theme="light"] {
   --shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 12px 32px rgba(0, 0, 0, 0.05);
   --max-read: 58ch;
   --logo-filter: none;
+  --logo-filter-on-dark-band: invert(1);
 }
 
 html[data-theme="dark"] {
@@ -47,6 +48,7 @@ html[data-theme="dark"] {
   --chip-bg: #1c1c1c;
   --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 12px 32px rgba(0, 0, 0, 0.28);
   --logo-filter: invert(1);
+  --logo-filter-on-dark-band: none;
 }
 
 * {
@@ -261,13 +263,12 @@ section h2 {
 }
 
 .brand-logo {
-  width: 40px;
-  height: 40px;
-  object-fit: cover;
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
   object-position: center;
   background: transparent;
-  border: 1px solid var(--color-surface-border);
-  border-radius: 8px;
+  border: none;
   filter: var(--logo-filter);
 }
 
@@ -446,6 +447,7 @@ html[data-theme="dark"] .theme-icon-moon {
 
 .btn-primary:hover {
   filter: brightness(1.08);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
 }
 
 .btn-outline {
@@ -463,9 +465,10 @@ html[data-theme="dark"] .theme-icon-moon {
 
 .hero {
   padding: 4.25rem 1.5rem 5.25rem;
-  background: var(--color-bg);
+  background-color: var(--color-bg);
   border-bottom: 1px solid var(--color-surface-border);
   text-align: center;
+  color: var(--color-text);
 }
 
 .hero-inner {
@@ -522,15 +525,29 @@ html[data-theme="dark"] .theme-icon-moon {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 0.5rem;
+  align-items: center;
+  gap: 0.65rem;
 }
 
 .hero-meta li {
-  font-size: 0.9rem;
-  font-weight: 650;
+  font-size: 0.92rem;
+  font-weight: 600;
   color: var(--color-text-muted);
-  border: 1px solid var(--color-surface-border);
-  background: var(--chip-bg);
+}
+
+.hero-meta li + li {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.hero-meta li + li::before {
+  content: "";
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--color-text-soft);
+  flex-shrink: 0;
 }
 
 /* ============ FEATURES ============ */
@@ -579,16 +596,6 @@ html[data-theme="dark"] .theme-icon-moon {
   font-weight: 650;
   margin-bottom: 0.45rem;
   letter-spacing: -0.01em;
-}
-
-.feature-sub {
-  display: block;
-  font-size: 0.92rem;
-  font-weight: 500;
-  color: var(--color-text-soft);
-  font-family: var(--font-body);
-  letter-spacing: 0;
-  margin-top: 0.15rem;
 }
 
 .feature-card p {
@@ -1150,11 +1157,10 @@ html[data-theme="dark"] .theme-icon-moon {
 }
 
 .privacy-logo {
-  width: 64px;
-  height: 64px;
-  border-radius: 10px;
+  width: 60px;
+  height: 60px;
   flex-shrink: 0;
-  border: 1px solid var(--color-surface-border);
+  border: none;
   background: transparent;
   object-fit: contain;
   filter: var(--logo-filter);
@@ -1383,13 +1389,12 @@ html[data-theme="dark"] .theme-icon-moon {
 }
 
 .download-icon {
-  width: 96px;
-  height: 96px;
-  border-radius: 16px;
+  width: 84px;
+  height: 84px;
   flex-shrink: 0;
-  border: 1px solid var(--color-surface-border);
+  border: none;
   background: transparent;
-  object-fit: cover;
+  object-fit: contain;
   object-position: center;
   filter: var(--logo-filter);
 }
@@ -1528,11 +1533,11 @@ html[data-theme="dark"] .theme-icon-moon {
 }
 
 .footer-logo {
-  width: 40px;
-  height: 40px;
-  border-radius: 8px;
-  background: var(--color-invert);
+  width: 36px;
+  height: 36px;
+  background: transparent;
   object-fit: contain;
+  filter: var(--logo-filter-on-dark-band);
 }
 
 .footer-links {
@@ -1792,7 +1797,6 @@ html[data-theme="dark"] .theme-icon-moon {
 
   .hero-meta li {
     font-size: 0.82rem;
-    padding: 0.3rem 0.7rem;
   }
 
   .download-card {
