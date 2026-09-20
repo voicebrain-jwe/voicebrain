@@ -3,7 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<script>document.documentElement.classList.add('js');</script>
+<meta name="theme-color" content="#ffffff">
+<script>
+(function () {
+  document.documentElement.classList.add("js");
+  var theme = "light";
+  try {
+    var stored = localStorage.getItem("voicebrain-theme");
+    if (stored === "dark" || stored === "light") {
+      theme = stored;
+    } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      theme = "dark";
+    }
+  } catch (err) {}
+  document.documentElement.setAttribute("data-theme", theme);
+})();
+</script>
 <title>Voicebrain — AI Voice Assistant for the Blind &amp; Visually Impaired</title>
 <meta name="description" content="Voicebrain is an AI-powered accessibility app for the blind and visually impaired. Object detection, navigation, OCR, money detection, and a voice assistant — all by voice alone.">
 <link rel="icon" href="voicebrain-logo.png" type="image/png">
@@ -30,6 +45,7 @@
         <li><a href="#screenshots" data-i18n="nav.screenshots">Screenshots</a></li>
         <li><a href="#about" data-i18n="nav.about">About Us</a></li>
         <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
+        <li class="nav-cta-item"><a href="#download" data-i18n="nav.download">Download</a></li>
       </ul>
 
       <a href="#download" class="btn btn-primary btn-nav" data-i18n="nav.download">Download</a>
@@ -38,6 +54,17 @@
         <button type="button" class="lang-btn is-active" id="langEn" data-lang="en" aria-pressed="true">EN</button>
         <button type="button" class="lang-btn" id="langFil" data-lang="fil" aria-pressed="false">FIL</button>
       </div>
+
+      <button type="button" class="theme-toggle" id="themeToggle" aria-pressed="false">
+        <span class="visually-hidden" id="themeToggleLabel">Switch to dark mode</span>
+        <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 14.5A8.5 8.5 0 1 1 9.5 3 7 7 0 0 0 21 14.5z"/>
+        </svg>
+        <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4"/>
+          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+        </svg>
+      </button>
 
       <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="primaryMenu">
         <span class="visually-hidden" data-i18n="nav.toggle">Open menu</span>
@@ -58,7 +85,7 @@
       <h1 id="hero-heading" data-i18n="hero.heading">The Voice You Need.<br>Nothing Else.</h1>
       <p class="hero-tagline" data-i18n="hero.tagline">Object detection, navigation, OCR, and a voice assistant — all by voice, online or offline.</p>
       <div class="hero-actions">
-        <a href="https://github.com/voicebrain-jwe/voicebrain/releases/download/v1.2/Voicebrain_v1.0.apk" class="btn btn-primary js-download-link" data-i18n="hero.cta1">Download the App</a>
+        <a href="https://github.com/voicebrain-jwe/voicebrain/releases/download/v2.0/Voicebrain.apk" class="btn btn-primary js-download-link" data-i18n="hero.cta1">Download the App</a>
         <a href="#features" class="btn btn-outline" data-i18n="hero.cta2">Learn the Features</a>
       </div>
       <ul class="hero-meta">
@@ -664,7 +691,7 @@
           <h3>Voicebrain <span class="download-version js-latest-version">v1.0</span></h3>
           <p class="download-meta" data-i18n="download.meta">Android APK · ~290 MB</p>
           <div class="download-actions">
-            <a href="https://github.com/voicebrain-jwe/voicebrain/releases/download/v1.2/Voicebrain_v1.0.apk" class="btn btn-primary js-download-link" data-i18n="download.cta">Download Now</a>
+            <a href="https://github.com/voicebrain-jwe/voicebrain/releases/download/v2.0/Voicebrain.apk" class="btn btn-primary js-download-link" data-i18n="download.cta">Download Now</a>
             <a href="https://github.com/voicebrain-jwe/voicebrain/releases" target="_blank" rel="noopener noreferrer" class="download-releases-link js-releases-link" data-i18n="download.releases">View all releases &amp; release notes</a>
           </div>
         </div>

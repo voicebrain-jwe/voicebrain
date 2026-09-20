@@ -11,8 +11,8 @@
      Update ONLY this object when a new APK ships — every .js-download-link,
      .js-latest-version, and .js-releases-link on the page updates automatically. */
   var LATEST_RELEASE = {
-    version: "1.0",
-    url: "https://github.com/voicebrain-jwe/voicebrain/releases/download/v1.2/Voicebrain_v1.0.apk",
+    version: "2.0",
+    url: "https://github.com/voicebrain-jwe/voicebrain/releases/download/v2.0/Voicebrain.apk",
     releasesPage: "https://github.com/voicebrain-jwe/voicebrain/releases"
   };
 
@@ -160,6 +160,8 @@
     "nav.about": { en: "About Us", fil: "Tungkol sa Amin" },
     "nav.contact": { en: "Contact", fil: "Makipag-ugnayan" },
     "nav.privacy": { en: "Privacy Policy", fil: "Patakaran sa Privacy" },
+    "theme.toDark": { en: "Switch to dark mode", fil: "Lumipat sa dark mode" },
+    "theme.toLight": { en: "Switch to light mode", fil: "Lumipat sa light mode" },
 
     "hero.heading": {
       en: "The Voice You Need.<br>Nothing Else.",
@@ -425,6 +427,9 @@
       }
     });
     document.documentElement.setAttribute("lang", currentLang === "fil" ? "fil" : "en");
+    if (typeof syncThemeToggle === "function") {
+      syncThemeToggle();
+    }
   }
 
   function setLanguage(lang) {
@@ -466,6 +471,57 @@
     storedLang = "en";
   }
   setLanguage(storedLang);
+
+  /* ---------- Dark / light theme ---------- */
+  function getTheme() {
+    return document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light";
+  }
+
+  function applyTheme(theme, persist) {
+    var next = theme === "dark" ? "dark" : "light";
+    document.documentElement.setAttribute("data-theme", next);
+    if (persist) {
+      try {
+        localStorage.setItem("voicebrain-theme", next);
+      } catch (err) {}
+    }
+    syncThemeToggle();
+  }
+
+  function syncThemeToggle() {
+    var btn = document.getElementById("themeToggle");
+    var label = document.getElementById("themeToggleLabel");
+    var isDark = getTheme() === "dark";
+    var text = t(isDark ? "theme.toLight" : "theme.toDark");
+    if (btn) {
+      btn.setAttribute("aria-pressed", String(isDark));
+      btn.setAttribute("aria-label", text);
+    }
+    if (label) {
+      label.textContent = text;
+    }
+    var meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) {
+      meta.setAttribute("content", isDark ? "#0e0e0e" : "#ffffff");
+    }
+  }
+
+  var themeToggle = document.getElementById("themeToggle");
+  if (themeToggle) {
+    themeToggle.addEventListener("click", function () {
+      applyTheme(getTheme() === "dark" ? "light" : "dark", true);
+    });
+  }
+
+  try {
+    if (!localStorage.getItem("voicebrain-theme") && window.matchMedia) {
+      window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", function (event) {
+        applyTheme(event.matches ? "dark" : "light", false);
+      });
+    }
+  } catch (err) {}
+
+  syncThemeToggle();
 
   /* ============================================================
      Phone-mockup screenshot carousel (auto-advancing vertical swipe)
