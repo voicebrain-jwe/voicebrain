@@ -5,3 +5,6 @@ Thumbs.db
 # APK builds are too large for a normal git push (GitHub's 100MB per-file
 # limit) — distribute via GitHub Releases instead, not the repo itself.
 releases/
+
+# Color originals of screenshots (BNW versions are used on the site)
+slides-original/

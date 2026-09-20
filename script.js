@@ -161,14 +161,19 @@
     "nav.contact": { en: "Contact", fil: "Makipag-ugnayan" },
     "nav.privacy": { en: "Privacy Policy", fil: "Patakaran sa Privacy" },
 
-    "hero.eyebrow": { en: "The Voice You Need. Nothing Else.", fil: "Boses ang Kailangan Mo. Wala Nang Iba." },
+    "hero.heading": {
+      en: "The Voice You Need.<br>Nothing Else.",
+      fil: "Boses ang Kailangan Mo.<br>Wala Nang Iba."
+    },
     "hero.tagline": {
-      en: "The AI accessibility app that gives independence to the blind and visually impaired — object detection, navigation, OCR, and a voice assistant, all by voice alone, online or offline.",
-      fil: "Ang AI accessibility app na nagbibigay ng kalayaan sa mga bulag at may kapansanan sa paningin — object detection, navigation, OCR, at voice assistant, lahat gamit lang ang boses, online man o offline."
+      en: "Object detection, navigation, OCR, and a voice assistant — all by voice, online or offline.",
+      fil: "Object detection, navigation, OCR, at voice assistant — lahat gamit ang boses, online man o offline."
     },
     "hero.cta1": { en: "Download the App", fil: "I-download ang App" },
     "hero.cta2": { en: "Learn the Features", fil: "Alamin ang mga Feature" },
-    "hero.note": { en: "Available on Android · Works online and offline · Filipino &amp; English", fil: "Available sa Android · Gumagana online at offline · Filipino at English" },
+    "hero.chip1": { en: "Android", fil: "Android" },
+    "hero.chip2": { en: "Online &amp; offline", fil: "Online at offline" },
+    "hero.chip3": { en: "Filipino &amp; English", fil: "Filipino at English" },
 
     "features.eyebrow": { en: "Features", fil: "Mga Feature" },
     "features.heading": { en: "Everything You Need, Just Say It", fil: "Lahat ng Kailangan Mo, Sasabihin Lang" },
