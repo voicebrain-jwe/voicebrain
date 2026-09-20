@@ -409,6 +409,105 @@
   };
 
   var currentLang = "en";
+  var privacyFilipino = {
+    intro: "Ang VoiceBrain ay isang accessibility app para sa mga bulag at may mababang paningin. Ginagamit nito ang camera, mikropono, at lokasyon para ilarawan ang paligid, magbasa ng teksto, kumilala ng pera at kulay, at makipag-ugnayan sa emergency contacts gamit ang boses. Ipinapaliwanag dito, item kada item, kung ano ang lumalabas sa iyong telepono - at kung ano ang hindi.",
+    badges: [
+      ["Walang account", "Walang sign-in at walang user ID na nakaugnay sa iyo"],
+      ["Walang server", "Wala kaming backend na nag-iimbak ng iyong data"],
+      ["Ikaw ang pumipili kung ano ang ipapadala", "Ang lokasyon at mensahe ay sa sarili mong contact lamang" ]
+    ],
+    meta: ["Petsa ng bisa", "Bersyon ng app", "Developer"],
+    tocTitle: "Nasa pahinang ito",
+    toc: ["1. Pangkalahatang-ideya", "2. Data na Ginagamit Namin", "3. Nanatili sa Iyong Telepono", "4. Mga Serbisyo ng Ibang Provider", "5. Kanino Ibinabahagi ang Data", "6. Pag-iimbak at Tagal ng Pagpapanatili", "7. Iyong mga Kontrol", "8. Privacy ng mga Bata", "9. Seguridad", "10. Mga Pagbabago sa Patakarang Ito", "11. Makipag-ugnayan sa Amin"],
+    articles: {
+      "pp-overview": {
+        heading: "1. Pangkalahatang-ideya",
+        paragraphs: [
+          "Ang VoiceBrain ay isang accessibility app para sa mga bulag at may mababang paningin. Ginagamit nito ang camera, mikropono, at lokasyon para ilarawan ang paligid, magbasa ng teksto, kumilala ng pera at kulay, at makipag-ugnayan sa emergency contacts gamit ang boses - karamihan sa pagproseso ay direktang nangyayari sa iyong telepono, hindi sa server na pinapatakbo namin.",
+          "Ipinapaliwanag ng patakarang ito kung ano ang ina-access ng app, bakit ito kailangan, at kung lumalabas ba sa iyong device ang bawat item."
+        ]
+      },
+      "pp-data": {
+        heading: "2. Data na Ginagamit Namin",
+        paragraphs: ["May partikular na feature ang bawat permission sa ibaba. Hindi kailanman humihingi ang app ng permission nang walang malinaw na dahilan."],
+        permissions: [
+          ["Camera", ["Sa device lamang"], "Pinapagana nito ang Object Detection, Guidance, Place Detection, Text Reader, Color Identifier, at Money Detection. Sinusuri ng AI models na tumatakbo sa iyong telepono ang bawat frame at hindi ito ina-upload, sine-save, o ipinapadala kahit saan."],
+          ["Microphone", ["Sa device kapag offline", "Sa Google kapag online"], "Ginagamit para sa voice commands at Voice SMS Mode. Kapag online ang telepono, tine-transcribe ng built-in Android speech recognition service (karaniwang Google) ang boses at ipinapadala ang audio sa Google ayon sa sarili nitong privacy terms. Kapag offline o walang speech service, awtomatikong gumagamit ang VoiceBrain ng offline Whisper model na tumatakbo sa device - walang ipinapadala kahit saan."],
+          ["Location", ["Sa contact mo lamang ipinapadala"], "Ina-access kapag sinabi mong send my location, at maaari ring awtomatikong ipadala sa pagitan ng 5-60 minuto kung binuksan mo ang Auto Send Location sa Settings. Sa alinmang paraan, ipinapadala ang coordinates sa Emergency Contact na ikaw ang nagtakda - hindi sa amin at hindi bilang link. Gumagana lamang ito habang bukas ang app sa foreground at walang iniimbak na location history ang VoiceBrain."],
+          ["SMS at Phone Calls", ["Sa contact mo lamang ipinapadala"], "Ginagamit para magpadala ng Voice SMS, lokasyon, at video call links, at para tumawag kapag Emergency Mode - laging sa Emergency Contact number(s) na ikaw ang naglagay. Hindi kayang magpadala ng SMS o tumawag ang VoiceBrain sa iba, at hindi nito binabasa ang dati mong messages o call history."],
+          ["Bluetooth", ["Sa device lamang"], "Inililipat nito ang microphone at audio output sa nakakonektang Bluetooth accessory, gaya ng smart glasses na may mic at speaker, sa halip na sa sariling hardware ng telepono."],
+          ["Step / Activity Data", ["Sa device lamang"], "Pinapagana ang built-in step counter na binabasa sa iyo kapag hiniling. Lokal itong binibilang at hindi ini-log o ipinapadala."],
+          ["Listahan ng mga Naka-install na App", ["Sa device lamang"], "Hinahayaan kang magsabi ng open Facebook o open YouTube para buksan ang ibang app. Ginagamit lamang ng VoiceBrain ang listahang ito para hanapin at buksan ang app na hiniling mo."]
+        ]
+      },
+      "pp-device": {
+        heading: "3. Nanatili sa Iyong Telepono",
+        paragraphs: ["Walang user accounts, sign-in, o backend server ang VoiceBrain na nag-iimbak ng iyong data. Wala ring advertising SDK, analytics, o crash-tracking SDK na kumokolekta ng behavior data. Ang mga sumusunod lamang ang lokal na naka-save sa app storage ng iyong telepono:", "Walang sini-sync sa cloud account o nakikita sa amin ang mga ito. Kapag in-uninstall ang app, permanenteng nabubura ang lahat mula sa iyong device."],
+        list: ["Iyong nickname at language/voice preferences", "Mga pangalan at numero ng Emergency Contact na inilagay mo", "Detection settings at thresholds"]
+      },
+      "pp-third-party": {
+        heading: "4. Mga Serbisyo ng Ibang Provider",
+        paragraphs: ["Umaasa ang VoiceBrain sa ilang serbisyong built-in sa Android, hindi sa mga serbisyong pinapatakbo namin:", "Hindi kami gumagamit ng advertising network, analytics platform, o data broker."],
+        list: ["Android speech recognition service (karaniwang Google) - tumatanggap ng audio habang online ka at sa tagal lamang ng voice command, ayon sa privacy policy ng provider.", "Google ML Kit Text Recognition - nagbabasa ng text para sa Text Reader nang direkta sa device; hindi ina-upload sa Google ang images."]
+      },
+      "pp-sharing": { heading: "5. Kanino Ibinabahagi ang Data", paragraphs: ["Hindi namin ibinebenta, inuupahan, o ibinabahagi ang iyong data sa advertisers o ibang third parties. Ang tanging sharing ay direktang resulta ng feature na ikaw mismo ang nag-on - halimbawa, pagpapadala ng lokasyon sa Emergency Contact na pinili mo. Mula sa telepono mo papunta sa telepono nila ang mensahe; hindi ito dumadaan sa amin."] },
+      "pp-storage": { heading: "6. Pag-iimbak at Tagal ng Pagpapanatili", paragraphs: ["Lahat ng app data ay nasa local storage ng iyong device habang naka-install ang app. Walang remote copy na kailangan naming panatilihin, burahin, o protektahan laban sa breach dahil hindi namin ito natatanggap. Kapag in-uninstall ang VoiceBrain, agad itong nabubura."] },
+      "pp-controls": { heading: "7. Iyong mga Kontrol", list: ["<strong>Permissions:</strong> Maaari mong i-grant o i-revoke ang anumang permission sa Android Settings - Apps - VoiceBrain - Permissions. Hihinto lamang ang feature na gumagamit nito hanggang ibalik ang permission.", "<strong>Auto Send Location:</strong> Naka-off ito bilang default; maaari mo itong i-on o i-off anumang oras sa Settings ng VoiceBrain.", "<strong>Offline mode:</strong> I-off ang mobile data at Wi-Fi para manatili sa device ang voice recognition.", "<strong>Burahin ang lahat:</strong> I-uninstall ang app."] },
+      "pp-children": { heading: "8. Privacy ng mga Bata", paragraphs: ["Hindi para sa mga bata ang VoiceBrain at hindi kami sadyang kumokolekta ng personal information mula sa mga bata. Kung sa tingin mo ay may impormasyong ibinigay ang isang bata, makipag-ugnayan sa amin gamit ang contact details sa ibaba."] },
+      "pp-security": { heading: "9. Seguridad", paragraphs: ["Dahil pinoproseso sa device at hindi ipinapadala sa server ang sensitibong data gaya ng camera frames, audio, at lokasyon, wala kaming central database ng user data na maaaring ma-breach. Ang data na ipinapadala sa SMS o phone call ay protektado ng standard network security ng iyong carrier."] },
+      "pp-changes": { heading: "10. Mga Pagbabago sa Patakarang Ito", paragraphs: ["Kung magbabago ang patakarang ito, ilalathala ang updated version sa parehong address at may bagong petsa ng bisa sa itaas. Ang patuloy na paggamit ng app pagkatapos ng update ay nangangahulugang tinatanggap mo ang binagong policy."] },
+      "pp-contact": { heading: "11. Makipag-ugnayan sa Amin", paragraphs: ["Ang mga tanong tungkol sa patakarang ito o kung paano pinangangasiwaan ng VoiceBrain ang data ay maaaring ipadala sa:"], list: ["<strong>Email:</strong> <a href=\"mailto:juvaltabernero@gmail.com\">juvaltabernero@gmail.com</a>", "<strong>Developer:</strong> Louis Juval Ergina Tabernero"] }
+    }
+  };
+
+  var privacyEnglish = null;
+
+  function applyPrivacyLanguage() {
+    var section = document.getElementById("privacy");
+    if (!section) {
+      return;
+    }
+    var selectors = [".section-lead", ".privacy-badges strong", ".privacy-badges span", ".privacy-meta dt", ".privacy-toc h3", ".privacy-toc a"];
+    Object.keys(privacyFilipino.articles).forEach(function (id) {
+      selectors.push("#" + id + " h3");
+      selectors.push("#" + id + " p");
+      selectors.push("#" + id + " > ul:not(.permission-list) > li");
+      selectors.push("#" + id + " .permission-name");
+      selectors.push("#" + id + " .tag");
+    });
+    if (!privacyEnglish) {
+      privacyEnglish = selectors.map(function (selector) {
+        return { selector: selector, values: Array.prototype.map.call(section.querySelectorAll(selector), function (el) { return el.innerHTML; }) };
+      });
+    }
+    if (currentLang !== "fil") {
+      privacyEnglish.forEach(function (item) { section.querySelectorAll(item.selector).forEach(function (el, index) { el.innerHTML = item.values[index]; }); });
+      return;
+    }
+    section.querySelector(".section-lead").innerHTML = privacyFilipino.intro;
+    section.querySelectorAll(".privacy-badges li").forEach(function (el, index) {
+      var badge = privacyFilipino.badges[index];
+      if (badge) {
+        el.querySelector("strong").textContent = badge[0];
+        el.querySelector("span").textContent = badge[1];
+      }
+    });
+    section.querySelectorAll(".privacy-meta dt").forEach(function (el, index) {
+      if (privacyFilipino.meta[index]) {
+        el.textContent = privacyFilipino.meta[index];
+      }
+    });
+    section.querySelector(".privacy-toc h3").textContent = privacyFilipino.tocTitle;
+    section.querySelectorAll(".privacy-toc a").forEach(function (el, index) { el.textContent = privacyFilipino.toc[index]; });
+    Object.keys(privacyFilipino.articles).forEach(function (id) {
+      var article = privacyFilipino.articles[id];
+      var target = document.getElementById(id);
+      target.querySelector("h3").textContent = article.heading;
+      if (article.paragraphs) { target.querySelectorAll("p").forEach(function (el, index) { if (article.paragraphs[index]) { el.textContent = article.paragraphs[index]; } }); }
+      if (article.list) { target.querySelectorAll(":scope > ul:not(.permission-list) > li").forEach(function (el, index) { if (article.list[index]) { el.innerHTML = article.list[index]; } }); }
+      if (article.permissions) { target.querySelectorAll(".permission-list > li").forEach(function (el, index) { var permission = article.permissions[index]; el.querySelector(".permission-name").textContent = permission[0]; el.querySelectorAll(".tag").forEach(function (tag, tagIndex) { tag.textContent = permission[1][tagIndex]; }); el.querySelector("p").textContent = permission[2]; }); }
+    });
+  }
 
   function t(key) {
     var entry = translations[key];
@@ -426,6 +525,7 @@
         el.innerHTML = text;
       }
     });
+    applyPrivacyLanguage();
     document.documentElement.setAttribute("lang", currentLang === "fil" ? "fil" : "en");
     if (typeof syncThemeToggle === "function") {
       syncThemeToggle();
