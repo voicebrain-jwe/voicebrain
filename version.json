@@ -1,0 +1,11 @@
+{
+  "versionCode": 2,
+  "versionName": "0.2.0",
+  "releaseDate": "2026-09-24",
+  "apkUrl": "https://github.com/juvalitotabernero/VoicebrainApp/releases/download/v0.2.0/app-release.apk",
+  "apkSize": 288129095,
+  "sha256": "PALITAN_NG_TUNAY_NA_HASH_NG_APK",
+  "mandatory": false,
+  "minSupportedVersionCode": 1,
+  "releaseNotes": "Naka-adjust na LiDAR (Settings > LiDAR na Sensor), black & white theme para matipid sa baterya, at bagong logo/app icon."
+}
