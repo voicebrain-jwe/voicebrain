@@ -11,8 +11,8 @@
      Update ONLY this object when a new APK ships — every .js-download-link,
      .js-latest-version, and .js-releases-link on the page updates automatically. */
   var LATEST_RELEASE = {
-    version: "2.0",
-    url: "https://github.com/voicebrain-jwe/voicebrain/releases/download/v2.0/Voicebrain.apk",
+    version: "0.3.0",
+    url: "https://github.com/voicebrain-jwe/voicebrain/releases/download/v0.3.0/Voicebrain-v0.3.0.apk",
     releasesPage: "https://github.com/voicebrain-jwe/voicebrain/releases"
   };
 
@@ -93,6 +93,35 @@
   }
 
   /* ---------- Smooth scroll for in-page links ---------- */
+  /* Give every major content landmark a short description. Screen readers
+     announce this together with the section heading when an in-page link
+     moves focus there. */
+  document.querySelectorAll("main > section[aria-labelledby]").forEach(function (section) {
+    var description = section.querySelector(".section-lead, .hero-tagline, .mission-text > p:not(.section-eyebrow)");
+    if (!description) {
+      return;
+    }
+    if (!description.id) {
+      description.id = section.id + "-description";
+    }
+    section.setAttribute("aria-describedby", description.id);
+  });
+
+  function announceSection(target) {
+    var section = target.closest("section") || target;
+    var heading = target.querySelector("h1, h2, h3") || section.querySelector("h1, h2, h3");
+    var summary = section.querySelector(".section-lead, .hero-tagline, .mission-text > p:not(.section-eyebrow)");
+    var liveRegion = document.getElementById("sectionAnnouncement");
+    if (!heading || !liveRegion) {
+      return;
+    }
+    var prefix = document.documentElement.lang === "fil" ? "Nasa section ka na: " : "You are now in: ";
+    liveRegion.textContent = "";
+    window.setTimeout(function () {
+      liveRegion.textContent = prefix + heading.textContent.trim() + "." + (summary ? " " + summary.textContent.trim() : "");
+    }, 80);
+  }
+
   document.querySelectorAll('a[href^="#"]').forEach(function (link) {
     link.addEventListener("click", function (event) {
       var targetId = link.getAttribute("href");
@@ -106,6 +135,8 @@
       event.preventDefault();
       targetEl.scrollIntoView({ behavior: "smooth", block: "start" });
       targetEl.setAttribute("tabindex", "-1");
+      targetEl.focus({ preventScroll: true });
+      announceSection(targetEl);
 
       /* Late-loading web fonts and images can reflow the page (different
          line-heights, images finishing above the fold) after the scroll
@@ -124,7 +155,6 @@
         if (resizeObserver) {
           resizeObserver.disconnect();
         }
-        targetEl.focus({ preventScroll: true });
       }
 
       if (window.ResizeObserver) {
@@ -189,37 +219,37 @@
       en: "Just tap to talk — no wake word to remember. Get instant answers for the time, date, weather, and simple math.",
       fil: "Tap-to-speak lang, walang wake word na kailangang tandaan. Sumasagot agad ng oras, petsa, weather, at simple math sa isang tapik lang."
     },
-    "f2.title": { en: "Object Detection", fil: "Suriin ang Bagay" },
+    "f2.title": { en: 'Object Detection <span class="feature-sub">(Suriin ang Bagay)</span>', fil: 'Suriin ang Bagay <span class="feature-sub">(Object Detection)</span>' },
     "f2.desc": {
       en: "Powered by AI object detection, Voicebrain tells you what's in front of the camera — from laptops to everyday items around you.",
       fil: "Gamit ang AI object detection, sinasabi ng Voicebrain kung anong bagay ang nakaharap sa camera — mula sa laptop hanggang sa mga pang-araw-araw na gamit."
     },
-    "f3.title": { en: "Obstacle &amp; Guidance", fil: "Iwas at Gabay" },
+    "f3.title": { en: 'Obstacle &amp; Guidance <span class="feature-sub">(Iwas at Gabay)</span>', fil: 'Iwas at Gabay <span class="feature-sub">(Obstacle &amp; Guidance)</span>' },
     "f3.desc": {
       en: "Get alerted to obstacles with an estimated distance, plus optional LiDAR support on compatible devices for more precise guidance.",
       fil: "Nag-aabiso ng mga hadlang at tinatantiya ang layo nito, may karagdagang LiDAR support sa mga suportadong device para mas tumpak na guidance."
     },
-    "f4.title": { en: "Place Detection", fil: "Suriin ang Lugar" },
+    "f4.title": { en: 'Place Detection <span class="feature-sub">(Suriin ang Lugar)</span>', fil: 'Suriin ang Lugar <span class="feature-sub">(Place Detection)</span>' },
     "f4.desc": {
       en: "The app recognizes the type of place you're in — a classroom, a kitchen, an office — so you always have a sense of your surroundings.",
       fil: "Kinikilala ng app ang uri ng lugar na kinaroroonan mo — halimbawa, classroom, kusina, o office — para may kamalayan ka sa paligid."
     },
-    "f5.title": { en: "Text Reader / OCR", fil: "Basahin ang Teksto" },
+    "f5.title": { en: 'Text Reader / OCR <span class="feature-sub">(Basahin ang Teksto)</span>', fil: 'Basahin ang Teksto <span class="feature-sub">(Text Reader / OCR)</span>' },
     "f5.desc": {
       en: "Just scan any printed text — receipts, letters, signage — and Voicebrain reads it aloud using OCR.",
       fil: "I-scan lang ang anumang nakalimbag na teksto — resibo, liham, karatula — at babasahin ito nang malakas ng Voicebrain gamit ang OCR."
     },
-    "f6.title": { en: "Color Identifier", fil: "Alamin ang Kulay" },
+    "f6.title": { en: 'Color Identifier <span class="feature-sub">(Alamin ang Kulay)</span>', fil: 'Alamin ang Kulay <span class="feature-sub">(Color Identifier)</span>' },
     "f6.desc": {
       en: "Point the camera at any object to instantly learn its color — handy for picking out clothes or identifying items.",
       fil: "Itapat lang ang camera sa isang bagay para malaman kaagad ang kulay nito — kapaki-pakinabang sa pagpili ng damit o pagkilala ng gamit."
     },
-    "f7.title": { en: "Money Detection", fil: "Suriin ang Pera" },
+    "f7.title": { en: 'Money Detection <span class="feature-sub">(Suriin ang Pera)</span>', fil: 'Suriin ang Pera <span class="feature-sub">(Money Detection)</span>' },
     "f7.desc": {
       en: "Voicebrain recognizes Philippine Peso bills and coins, so you can shop and count money with confidence.",
       fil: "Kinikilala ng Voicebrain ang mga Philippine Peso bills at coins, kaya makakapamili at makakabilang ng pera nang may kumpiyansa."
     },
-    "f8.title": { en: "Help Signal", fil: "Humingi ng Tulong" },
+    "f8.title": { en: 'Help Signal <span class="feature-sub">(Humingi ng Tulong)</span>', fil: 'Humingi ng Tulong <span class="feature-sub">(Help Signal)</span>' },
     "f8.desc": {
       en: "Triggers a flashlight SOS blinking signal to catch the attention of people nearby during an emergency.",
       fil: "Nagpapakita ng flashlight SOS blinking signal para mahikayat ang atensyon ng taong nasa paligid sa oras ng emergency."
