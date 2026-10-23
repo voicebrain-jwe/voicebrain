@@ -693,8 +693,10 @@
 
     var allSlides = [leadingClone].concat(realSlides, [trailingClone]);
     var activeIndex = 1;
-    var prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    var autoplay = !prefersReducedMotion;
+    /* Do not move the screenshots automatically. This prevents TalkBack
+       announcements from changing while someone is reading a screenshot.
+       People who want motion can explicitly start it with the play button. */
+    var autoplay = false;
     var timer = null;
     var resumeTimer = null;
 
@@ -778,7 +780,7 @@
       playPauseBtn.setAttribute("aria-label", on ? t("carousel.pause") : t("carousel.play"));
       playPauseBtn.innerHTML = on ? pauseIconSVG : playIconSVG;
       if (on) {
-        startAutoplay();
+    setAutoplay(autoplay);
       } else {
         stopAutoplay();
       }
