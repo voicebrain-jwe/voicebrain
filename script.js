@@ -11,8 +11,8 @@
      Update ONLY this object when a new APK ships — every .js-download-link,
      .js-latest-version, and .js-releases-link on the page updates automatically. */
   var LATEST_RELEASE = {
-    version: "0.3.0",
-    url: "https://github.com/voicebrain-jwe/voicebrain/releases/download/v0.3.0/Voicebrain-v0.3.0.apk",
+    version: "0.3.1",
+    url: "https://github.com/voicebrain-jwe/voicebrain/releases/download/v0.2.0/Voicebrain_v0.3.1.apk",
     releasesPage: "https://github.com/voicebrain-jwe/voicebrain/releases"
   };
 
@@ -89,6 +89,51 @@
       if (!isClickInside && navMenu.classList.contains("is-open")) {
         closeMenu();
       }
+    });
+  }
+
+  /* ---------- Keep primary navigation in sync with reading position ---------- */
+  if (window.IntersectionObserver && navMenu) {
+    var navLinks = Array.prototype.slice.call(navMenu.querySelectorAll('a[href^="#"]'));
+    var navSections = navLinks.map(function (link) {
+      return document.querySelector(link.getAttribute("href"));
+    }).filter(Boolean);
+
+    var sectionObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) {
+          return;
+        }
+        navLinks.forEach(function (link) {
+          link.classList.toggle("is-active", link.getAttribute("href") === "#" + entry.target.id);
+        });
+      });
+    }, { rootMargin: "-25% 0px -65% 0px", threshold: 0 });
+
+    navSections.forEach(function (section) {
+      sectionObserver.observe(section);
+    });
+  }
+
+  /* ---------- Reading progress and return-to-top action ---------- */
+  var progressBar = document.getElementById("scrollProgressBar");
+  var backToTop = document.getElementById("backToTop");
+  function updateScrollActions() {
+    var scrollable = document.documentElement.scrollHeight - window.innerHeight;
+    var progress = scrollable > 0 ? Math.min(100, (window.scrollY / scrollable) * 100) : 0;
+    if (progressBar) {
+      progressBar.style.transform = "scaleX(" + progress / 100 + ")";
+    }
+    if (backToTop) {
+      backToTop.classList.toggle("is-visible", window.scrollY > 560);
+    }
+  }
+  updateScrollActions();
+  window.addEventListener("scroll", updateScrollActions, { passive: true });
+  window.addEventListener("resize", updateScrollActions);
+  if (backToTop) {
+    backToTop.addEventListener("click", function () {
+      window.scrollTo({ top: 0, behavior: "smooth" });
     });
   }
 
@@ -190,6 +235,7 @@
     "nav.about": { en: "About Us", fil: "Tungkol sa Amin" },
     "nav.contact": { en: "Contact", fil: "Makipag-ugnayan" },
     "nav.privacy": { en: "Privacy Policy", fil: "Patakaran sa Privacy" },
+    "action.backToTop": { en: "Back to top", fil: "Bumalik sa itaas" },
     "theme.toDark": { en: "Switch to dark mode", fil: "Lumipat sa dark mode" },
     "theme.toLight": { en: "Switch to light mode", fil: "Lumipat sa light mode" },
 
@@ -555,6 +601,12 @@
         el.innerHTML = text;
       }
     });
+    document.querySelectorAll("[data-i18n-aria]").forEach(function (el) {
+      var ariaText = t(el.getAttribute("data-i18n-aria"));
+      if (ariaText) {
+        el.setAttribute("aria-label", ariaText);
+      }
+    });
     applyPrivacyLanguage();
     document.documentElement.setAttribute("lang", currentLang === "fil" ? "fil" : "en");
     if (typeof syncThemeToggle === "function") {
@@ -840,6 +892,16 @@
   var form = document.getElementById("contactForm");
   var formStatus = document.getElementById("formStatus");
   var submitBtn = document.getElementById("contactSubmitBtn");
+  var formToast = document.getElementById("formToast");
+  var formToastMessage = document.getElementById("formToastMessage");
+
+  function showFormToast(message) {
+    if (!formToast || !formToastMessage || !window.bootstrap || !window.bootstrap.Toast) {
+      return;
+    }
+    formToastMessage.textContent = message;
+    window.bootstrap.Toast.getOrCreateInstance(formToast, { delay: 5200 }).show();
+  }
 
   function setError(fieldId, errorId, message) {
     var field = document.getElementById(fieldId);
@@ -911,15 +973,21 @@
         .then(function (data) {
           submitBtn.disabled = false;
           if (data && data.success) {
-            formStatus.textContent = t("form.success").replace("{name}", name);
+            var successMessage = t("form.success").replace("{name}", name);
+            formStatus.textContent = successMessage;
+            showFormToast(successMessage);
             form.reset();
           } else {
-            formStatus.textContent = t("form.networkError");
+            var errorMessage = t("form.networkError");
+            formStatus.textContent = errorMessage;
+            showFormToast(errorMessage);
           }
         })
         .catch(function () {
           submitBtn.disabled = false;
-          formStatus.textContent = t("form.networkError");
+          var errorMessage = t("form.networkError");
+          formStatus.textContent = errorMessage;
+          showFormToast(errorMessage);
         });
     });
   }
